@@ -26,7 +26,25 @@ class main_listener implements EventSubscriberInterface
 			'core.memberlist_view_profile'	       => 'user_profile_likes',
 			'core.delete_posts_after'			=> 'clean_posts_after',
 			'core.delete_user_after'			=> 'clean_users_after',
+			'core.viewforum_update_sorting_options'	       => 'add_sort_by_likes_options',
 		);
+	}
+	
+	public function add_sort_by_likes_options($event) 
+	{
+		if ($event['sort_by_text'] != null) 
+		{
+			$sort_by_text = $event['sort_by_text'];
+			$sort_by_sql = $event['sort_by_sql'];
+			
+			$sort_by_text['l'] = $this->user->lang['SORT_BY_LIKES'];
+			$sort_by_sql['l'] = 't.total_posts_likes';
+			
+			$event['sort_by_text'] = $sort_by_text;
+			$event['sort_by_sql'] = $sort_by_sql;
+		}
+
+		return $event;
 	}
 
 	/**

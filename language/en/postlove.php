@@ -30,4 +30,5 @@ $lang = array_merge($lang, array(
 	'LIKE_LINE'	=> '%1$s - %2$s <b>liked</b> %3$s\'s post "%4$s" in topic "%5$s"',
 	'POSTLOVE_LIST'	=> 'Likes',
 	'POSTLOVE_LIST_VIEW'	=> 'Show list with all like actions',
+	'SORT_BY_LIKES' => 'Likes',
 ));

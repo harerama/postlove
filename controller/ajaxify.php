@@ -32,6 +32,13 @@ class ajaxify
 		$this->notifyhelper = $notifyhelper;
 		$this->table_prefix = $table_prefix;
 	}
+	
+	public function update_post_total_likes ($post)
+	{
+		$sql = 'update ' . $this->table_prefix . 'topics topics set total_posts_likes = ifnull (( select count(distinct likes.user_id) from ' . $this->table_prefix . 'posts_likes likes, ' . $this->table_prefix . 'posts posts where posts.post_id = likes.post_id and posts.topic_id = topics.topic_id and posts.post_visibility = 1 group by likes.user_id), 0) where topic_id = (select topic_id from '. $this->table_prefix . 'posts where post_id = ' . $post .' )';
+		$result = $this->db->sql_query($sql);
+		$this->db->sql_freeresult($result);
+	}
 
 	public function base ($action, $post)
 	{
@@ -79,6 +86,7 @@ class ajaxify
 							$sql = 'INSERT INTO ' . $this->table_prefix . 'posts_likes (post_id, user_id, type, timestamp) VALUES (' . $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
+							$this->update_post_total_likes($post);	
 							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . $post;
 							$result = $this->db->sql_query($sql);
 							$row1 = $this->db->sql_fetchrow($result);
@@ -95,6 +103,7 @@ class ajaxify
 							$sql = 'DELETE FROM ' . $this->table_prefix . 'posts_likes WHERE post_id = ' . $post . ' AND user_id = ' . $this->user->data['user_id'];
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
+							$this->update_post_total_likes($post);	
 							$this->notifyhelper->notify('remove', $row['topic_id'], $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action' => 'remove',
