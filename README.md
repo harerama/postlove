@@ -1,3 +1,6 @@
+Fork from https://github.com/satanasov/postlove.git that adds sorting on the number of topic likes (number of unique users who have liked any of the topic post)
+Requires patching core phpbb files - included are viewforum.php and search.php
+
 [![Build Status](https://travis-ci.org/satanasov/postlove.svg?branch=master)](https://travis-ci.org/satanasov/postlove) [![Coverage Status](https://coveralls.io/repos/github/satanasov/postlove/badge.svg?branch=master)](https://coveralls.io/github/satanasov/postlove?branch=master)
 
 Post Love
