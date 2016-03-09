@@ -27,6 +27,7 @@ class main_listener implements EventSubscriberInterface
 			'core.delete_posts_after'			=> 'clean_posts_after',
 			'core.delete_user_after'			=> 'clean_users_after',
 			'core.update_sorting_options'	       => 'add_sort_by_likes_options',
+			'core.viewforum_modify_topicrow'		=> 'display_on_topic_row',
 		);
 	}
 	
@@ -203,5 +204,19 @@ class main_listener implements EventSubscriberInterface
 	{
 		$sql = 'DELETE FROM ' . $this->table_prefix . 'posts_likes WHERE ' . $this->db->sql_in_set('user_id', $event['user_ids']);
 		$this->db->sql_query($sql);
+	}
+	
+	public function display_on_topic_row($event)
+	{
+		if ($this->config['postlove_show_liked'])
+		{
+			$blockId = $event['topic_row'] ? 'topic_row' : 'tpl_ary';
+			$row = $event['row'];
+		
+			$block = $event[$blockId];
+		
+			$block['TOPIC_LIKERS_COUNT'] = $row['total_posts_likes'];
+			$event[$blockId] = $block	;
+		}
 	}
 }

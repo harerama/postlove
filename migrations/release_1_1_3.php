@@ -14,7 +14,7 @@ namespace anavaro\postlove\migrations;
 * Primary migration
 */
 
-class release_1_1_2-patch_harerama extends \phpbb\db\migration\migration
+class release_1_1_3 extends \phpbb\db\migration\migration
 {
 	static public function depends_on()
 	{
@@ -37,7 +37,7 @@ class release_1_1_2-patch_harerama extends \phpbb\db\migration\migration
 	
 	public function update_data()
 	{
-		$sql = 'update ' . $this->table_prefix . 'topics topics set total_posts_likes = ifnull (( select count(distinct likes.user_id) from ' . $this->table_prefix . 'posts_likes likes, ' . $this->table_prefix . 'posts posts where posts.post_id = likes.post_id and posts.topic_id = topics.topic_id and posts.post_visibility = 1 group by likes.user_id), 0)';
+		$sql = 'update ' . $this->table_prefix . 'topics topics set total_posts_likes = ifnull (( select count(distinct likes.user_id) from ' . $this->table_prefix . 'posts_likes likes, ' . $this->table_prefix . 'posts posts where posts.post_id = likes.post_id and posts.topic_id = topics.topic_id and posts.post_visibility = 1), 0)';
 		$result = $this->db->sql_query($sql);
 		$this->db->sql_freeresult($result);
 	}

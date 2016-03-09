@@ -49,4 +49,5 @@ $lang = array_merge($lang, array(
 	'LIKE_LINE'	=> '%1$s - %2$s <b>a aimé</b> le message « %4$s » de %3$s dans le sujet « %5$s »',
 	'POSTLOVE_LIST'	=> 'Liste de « J’aime »',
 	'POSTLOVE_LIST_VIEW'	=> 'Permet d’afficher une liste de tous les « J’aime » partagés et reçus.',
+	'SORT_BY_LIKES' => 'Likes',
 ));

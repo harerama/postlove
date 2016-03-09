@@ -1,0 +1,6 @@
+{# display topic preview in view forum #}
+{% if topicrow.TOPIC_LIKERS_COUNT %}
+<div class="topic-likers">
+<span class="liked_info"></span> x {topicrow.TOPIC_LIKERS_COUNT}
+</div>
+{% endif %}
