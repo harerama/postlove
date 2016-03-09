@@ -26,7 +26,7 @@ class main_listener implements EventSubscriberInterface
 			'core.memberlist_view_profile'	       => 'user_profile_likes',
 			'core.delete_posts_after'			=> 'clean_posts_after',
 			'core.delete_user_after'			=> 'clean_users_after',
-			'core.viewforum_update_sorting_options'	       => 'add_sort_by_likes_options',
+			'core.update_sorting_options'	       => 'add_sort_by_likes_options',
 		);
 	}
 	
@@ -53,13 +53,10 @@ class main_listener implements EventSubscriberInterface
 	* the dependencies defined in the services.yml file for this service.
 	*
 	* @param \phpbb\auth		$auth		Auth object
-	* @param \phpbb\cache\service	$cache		Cache object
 	* @param \phpbb\config	$config		Config object
 	* @param \phpbb\db\driver	$db		Database object
-	* @param \phpbb\request	$request	Request object
 	* @param \phpbb\template	$template	Template object
 	* @param \phpbb\user		$user		User object
-	* @param \phpbb\content_visibility		$content_visibility	Content visibility object
 	* @param \phpbb\controller\helper		$helper				Controller helper object
 	* @param string			$root_path	phpBB root path
 	* @param string			$php_ext	phpEx

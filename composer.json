@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Adds ability to favourite/like/thank a post.",
 	"homepage": "http://lab.anavaro.com/forum/viewforum.php?f=5",
-	"version": "1.1.3",
+	"version": "1.1.2-patch_harerama",
 	"time": "2014-08-22",
 	"license": "GPL-2.0",
 	"authors": [
@@ -12,9 +12,11 @@
 			"email": "lucifer@anavaro.com",
 			"homepage": "http://anavaro.com",
 			"role": "Lead Developer"
-		}
+		},
 		{
 			"name": "HareRama",
+			"homepage": "https://github.com/harerama",
+			"role": "Contributing Developer"
 		}
 	],
 	"require": {

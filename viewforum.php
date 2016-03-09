@@ -271,7 +271,7 @@ $s_limit_days = $s_sort_key = $s_sort_dir = $u_sort_param = '';
 /**
 * Event to modify sorting options
 *
-* @event core.viewforum_update_sorting_options
+* @event core.update_sorting_options
 * @var	array	sort_by_text		
 * @var	array	sort_by_sql			
 *
@@ -283,7 +283,7 @@ $vars = array(
 	'sort_by_text',
 	'sort_by_sql',	
 );
-extract($phpbb_dispatcher->trigger_event('core.viewforum_update_sorting_options', compact($vars)));
+extract($phpbb_dispatcher->trigger_event('core.update_sorting_options', compact($vars)));
 
 gen_sort_selects($limit_days, $sort_by_text, $sort_days, $sort_key, $sort_dir, $s_limit_days, $s_sort_key, $s_sort_dir, $u_sort_param, $default_sort_days, $default_sort_key, $default_sort_dir);
 
