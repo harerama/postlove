@@ -35,7 +35,7 @@ class ajaxify
 	
 	public function update_post_total_likes ($post)
 	{
-		$sql = 'update ' . $this->table_prefix . 'topics topics set total_posts_likes = ifnull (( select count(distinct likes.user_id) from ' . $this->table_prefix . 'posts_likes likes, ' . $this->table_prefix . 'posts posts where posts.post_id = likes.post_id and posts.topic_id = topics.topic_id and posts.post_visibility = 1 group by likes.user_id), 0) where topic_id = (select topic_id from '. $this->table_prefix . 'posts where post_id = ' . $post .' )';
+		$sql = 'update ' . $this->table_prefix . 'topics topics set total_posts_likes = ifnull (( select count(distinct likes.user_id) from ' . $this->table_prefix . 'posts_likes likes, ' . $this->table_prefix . 'posts posts where posts.post_id = likes.post_id and posts.topic_id = topics.topic_id and posts.post_visibility = 1), 0) where topic_id = (select topic_id from '. $this->table_prefix . 'posts where post_id = ' . $post .' )';
 		$result = $this->db->sql_query($sql);
 		$this->db->sql_freeresult($result);
 	}
